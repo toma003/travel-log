@@ -1,0 +1,448 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    width: 100vw;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: #ffffff;
+    overflow-x: hidden;
+}
+
+/* 50/50 Split Container */
+.split-container {
+    display: flex;
+    width: 100vw;
+    min-height: 100vh;
+}
+
+/* --- LEFT PANEL: Hero Image & Typography --- */
+.left-hero {
+    width: 70%;
+    min-height: 100vh;
+    background: linear-gradient(rgba(15, 23, 42, 0.25), rgba(15, 23, 42, 0.45)), 
+                url('bg.jpg') no-repeat center center;
+    background-size: cover;
+    padding: 60px 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #ffffff;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin-top: 40px;
+    color: #ffffff;
+}
+
+.hero-caption-wrapper {
+  width: 100%;
+  margin-top: auto; 
+  text-align: center;
+}
+
+.hero-caption {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.6;
+  width: 100%;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.hero-features {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 0.2px;
+  text-align: center;
+}
+
+.feature-item svg {
+  flex-shrink: 0;
+  opacity: 0.85;
+}
+
+/* --- RIGHT PANEL: Clean Form --- */
+.right-form-panel {
+    width: 50%;
+    min-height: 100vh;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+.form-wrapper {
+    width: 100%;
+    max-width: 400px;
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.form-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 34px;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 8px;
+}
+
+.form-header p {
+    font-size: 13px;
+    color: #666666;
+}
+
+/* Inputs & Form Groups */
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #000000;
+    margin-bottom: 8px;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+    font-size: 14px;
+    color: #000000;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.form-group input::placeholder {
+    color: #a0aec0;
+}
+
+.form-group input:focus {
+    border-color: #000000;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 14px;
+    cursor: pointer;
+    color: #718096;
+    display: flex;
+    align-items: center;
+}
+
+/* Form Helper Links */
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: #4a5568;
+    margin-bottom: 24px;
+}
+
+.form-options label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.form-options a {
+    color: #000000;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.form-options a:hover {
+    text-decoration: underline;
+}
+
+/* Primary Action Button */
+.btn-primary {
+    width: 100%;
+    padding: 13px;
+    border-radius: 6px;
+    border: none;
+    background: #2f855a !important;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.btn-primary:hover {
+    background: #222222;
+}
+
+/* Navigation Prompt */
+.auth-switch {
+    text-align: center;
+    font-size: 13px;
+    color: #4a5568;
+    margin-top: 18px;
+    font-weight: 500;
+}
+
+.auth-switch a {
+    color: #000000;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.auth-switch a:hover {
+    text-decoration: underline;
+}
+
+/* Divider */
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 28px 0 24px 0;
+    color: #a0aec0;
+    font-size: 12px;
+}
+
+.divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #edf2f7;
+}
+
+.divider span {
+    padding: 0 12px;
+}
+
+/* Side-by-Side Social Buttons */
+.social-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.btn-social {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px;
+    border-radius: 6px;
+    background: #ffffff;
+    color: #2d3748;
+    font-weight: 600;
+    font-size: 13px;
+    border: 1px solid #e2e8f0;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+
+.btn-social:hover {
+    background: #f7fafc;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 900px) {
+    .split-container {
+        flex-direction: column;
+    }
+    .left-hero {
+        width: 100%;
+        min-height: 300px;
+        padding: 40px 30px;
+    }
+    .hero-title {
+        font-size: 40px;
+    }
+    .right-form-panel {
+        width: 100%;
+        min-height: auto;
+        padding: 40px 20px;
+    }
+}
+
+/* --- ADDED CODE: Alert Notifications & Modal Popup --- */
+.alert-box {
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    margin-bottom: 16px;
+    text-align: center;
+}
+.alert-error {
+    color: #e53e3e;
+    background: #fff5f5;
+    border: 1px solid #fed7d7;
+}
+.alert-success {
+    color: #2f855a;
+    background: #f0fff4;
+    border: 1px solid #c6f6d5;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(15, 23, 42, 0.45);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-card {
+    background: #ffffff;
+    width: 100%;
+    max-width: 420px;
+    padding: 36px 32px;
+    border-radius: 12px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    position: relative;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal-card {
+    transform: translateY(0);
+}
+
+.modal-close {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #a0aec0;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s ease;
+}
+
+.modal-close:hover {
+    color: #000000;
+}
+
+/* ==========================================
+   RESPONSIVE DESIGN (Tablets & Mobile)
+   ========================================== */
+
+/* Base Flex Alignment (Add/Ensure in main styles or media query) */
+.right-form-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;   
+    padding: 40px 24px;
+    background: #ffffff;
+}
+
+.form-wrapper {
+    width: 100%;
+    max-width: 400px; 
+}
+
+/* Tablet & iPad Viewports (Portrait mode) */
+@media (max-width: 1050px) and (min-width: 769px) {
+    .split-container {
+        flex-direction: row;
+        height: 100vh;
+        max-height: 100vh;
+        overflow: hidden;
+    }
+
+    .left-hero {
+        width: 45%;
+        padding: 48px 32px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .hero-title {
+        font-size: 2.2rem;
+        line-height: 1.2;
+    }
+
+    .right-form-panel {
+        width: 55%;
+        padding: 40px 32px;
+    }
+}
+
+/* Mobile Phones (768px and down) */
+@media (max-width: 768px) {
+    .split-container {
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    .left-hero {
+        width: 100%;
+        min-height: 260px;
+        padding: 36px 20px;
+    }
+
+    .hero-title {
+        font-size: 1.75rem;
+    }
+
+    .right-form-panel {
+        width: 100%;
+        padding: 36px 20px;
+    }
+
+    .form-wrapper {
+        max-width: 100%;
+    }
+}
