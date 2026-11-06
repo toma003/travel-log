@@ -1,10 +1,5 @@
 <?php
-session_start();
-
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit();
-}
+require_once 'includes/auth.php';
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +13,6 @@ if (!isset($_SESSION['user_id'])) {
 <body>
 
 <div class="auth-container" style="max-width: 600px;">
-    <!-- <h2>Welcome to Travel Log, <?php echo htmlspecialchars($_SESSION['username']); ?>! 🎉</h2> -->
     <h2> Welcome to Travel Log, <?= htmlspecialchars($_SESSION['user_name'] ?? $_SESSION['username'] ?? 'Explorer') ?>! 🎉 </h2>
     <p style="text-align: center; margin-bottom: 20px;">You are now securely logged in.</p>
     <a href="logout.php" class="btn" style="display: block; text-align: center; text-decoration: none; background-color: #dc3545;">Logout</a>

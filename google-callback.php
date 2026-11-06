@@ -5,10 +5,8 @@ if (session_status() === PHP_SESSION_NONE) {
 
 require_once 'config/db.php';
 
-// Set response header to JSON
 header('Content-Type: application/json');
 
-// Read JSON payload sent from frontend JavaScript
 $input = json_decode(file_get_contents('php://input'), true);
 
 if (!isset($input['credential'])) {
@@ -18,7 +16,6 @@ if (!isset($input['credential'])) {
 
 $id_token = $input['credential'];
 
-// Verify JWT token with Google using cURL (bypasses local XAMPP SSL issues)
 $verify_url = "https://oauth2.googleapis.com/tokeninfo?id_token=" . urlencode($id_token);
 
 $ch = curl_init();
@@ -39,33 +36,29 @@ if (isset($data['email']) && !empty($data['email'])) {
     $email = $data['email'];
     $name = $data['name'] ?? explode('@', $email)[0];
 
-    // Check if user already exists in MySQL
-    $stmt = $conn->prepare("SELECT id, full_name FROM users WHERE email = ?");
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    // Check if user already exists in MySQL using PDO
+    $stmt = $pdo->prepare("SELECT id, full_name FROM users WHERE email = ?");
+    $stmt->execute([$email]);
+    $user = $stmt->fetch();
 
-    if ($user = $result->fetch_assoc()) {
+    if ($user) {
         // User exists -> Create session
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['user_name'] = $user['full_name'] ?? $name;
     } else {
-        // New user -> Insert into database
+        // New user -> Insert into database using PDO
         $random_password = password_hash(bin2hex(random_bytes(16)), PASSWORD_BCRYPT);
         
-        $insert_stmt = $conn->prepare("INSERT INTO users (full_name, email, password) VALUES (?, ?, ?)");
-        $insert_stmt->bind_param("sss", $name, $email, $random_password);
+        $insert_stmt = $pdo->prepare("INSERT INTO users (full_name, email, password) VALUES (?, ?, ?)");
         
-        if ($insert_stmt->execute()) {
-            $_SESSION['user_id'] = $insert_stmt->insert_id;
+        if ($insert_stmt->execute([$name, $email, $random_password])) {
+            $_SESSION['user_id'] = $pdo->lastInsertId();
             $_SESSION['user_name'] = $name;
         } else {
             echo json_encode(['success' => false, 'message' => 'Database registration failed.']);
             exit();
         }
-        $insert_stmt->close();
     }
-    $stmt->close();
 
     echo json_encode(['success' => true]);
     exit();

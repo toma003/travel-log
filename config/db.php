@@ -4,7 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 $host = "localhost";
-$dbname = "travel-log-db"; // matches your database name
+$dbname = "travel-log-db";
 $username = "root";
 $password = "";
 
@@ -20,11 +20,3 @@ try {
 } catch (PDOException $e) {
     die("Database connection failed: " . $e->getMessage());
 }
-
-// 2. MySQLi Connection (Provides $conn for register.php and login.php)
-$conn = new mysqli($host, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Database connection failed: " . $conn->connect_error);
-}
-?>

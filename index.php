@@ -5,24 +5,18 @@ if (session_status() === PHP_SESSION_NONE) {
 
 require_once 'config/db.php';
 
-// Auto-login via "Remember Me" Cookie if session doesn't exist yet
+// Auto-login via "Remember Me" Cookie using PDO
 if (!isset($_SESSION['user_id']) && isset($_COOKIE['remember_token'])) {
     $raw_token = $_COOKIE['remember_token'];
     $hashed_token = hash('sha256', $raw_token);
 
-    if (isset($conn) && $conn instanceof mysqli) {
-        $stmt = $conn->prepare("SELECT id, full_name FROM users WHERE remember_token = ? AND token_expires > NOW()");
-        if ($stmt) {
-            $stmt->bind_param("s", $hashed_token);
-            $stmt->execute();
-            $result = $stmt->get_result();
+    $stmt = $pdo->prepare("SELECT id, full_name FROM users WHERE remember_token = ? AND token_expires > NOW()");
+    $stmt->execute([$hashed_token]);
+    $user = $stmt->fetch();
 
-            if ($user = $result->fetch_assoc()) {
-                $_SESSION['user_id'] = $user['id'];
-                $_SESSION['user_name'] = $user['full_name'] ?? 'Explorer';
-            }
-            $stmt->close();
-        }
+    if ($user) {
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['user_name'] = $user['full_name'] ?? 'Explorer';
     }
 }
 
@@ -40,11 +34,9 @@ unset($_SESSION['auth_error'], $_SESSION['auth_success']);
 <html lang="en">
 <head>
     <link rel="stylesheet" href="css/style.css?v=1.8">
-    <!-- <link rel="stylesheet" href="css/style.css?v=1.1"> -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Explore Near Nature Spots - Travel Log</title>
-    <link rel="stylesheet" href="css/style.css">
     <!-- Google Identity Services Library -->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
@@ -85,7 +77,7 @@ unset($_SESSION['auth_error'], $_SESSION['auth_success']);
         </div>
     </div>
 
-    <!-- RIGHT SIDE: Actual Login Form -->
+    <!-- RIGHT SIDE: Login Form -->
     <div class="right-form-panel">
         <div class="form-wrapper">
             <div class="form-header">

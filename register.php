@@ -14,25 +14,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!empty($email) && !empty($password)) {
         // Check if user already exists
-        $check = $conn->prepare("SELECT id FROM users WHERE email = ?");
-        $check->bind_param("s", $email);
-        $check->execute();
+        $check = $pdo->prepare("SELECT id FROM users WHERE email = ?");
+        $check->execute([$email]);
         
-        if ($check->get_result()->num_rows > 0) {
+        if ($check->rowCount() > 0) {
             $_SESSION['auth_error'] = "An account with this email already exists.";
         } else {
             $hashed_password = password_hash($password, PASSWORD_BCRYPT);
-            $stmt = $conn->prepare("INSERT INTO users (full_name, email, password) VALUES (?, ?, ?)");
-            $stmt->bind_param("sss", $name, $email, $hashed_password);
+            $stmt = $pdo->prepare("INSERT INTO users (full_name, email, password) VALUES (?, ?, ?)");
             
-            if ($stmt->execute()) {
+            if ($stmt->execute([$name, $email, $hashed_password])) {
                 $_SESSION['auth_success'] = "Account created successfully! Please sign in.";
             } else {
                 $_SESSION['auth_error'] = "Registration failed. Please try again.";
             }
-            $stmt->close();
         }
-        $check->close();
     } else {
         $_SESSION['auth_error'] = "Please fill in all required fields.";
     }
