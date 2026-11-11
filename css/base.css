@@ -1,0 +1,36 @@
+/* Color Palette & Typography Variables */
+:root {
+  --primary-color: #2D7D56;
+  --primary-hover: #236343;
+  --bg-cream: #FDFBF7;
+  --card-cream: #F5EFDF;
+  --text-dark: #2C3531;
+  --text-muted: #5C6B64;
+  --border-color: #E2D9C8;
+  --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Global Reset & Base Styling */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-cream);
+  color: var(--text-dark);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, .brand-title {
+  font-family: var(--font-serif);
+  letter-spacing: -0.02em;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}

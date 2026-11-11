@@ -1,0 +1,125 @@
+.navbar {
+  width: 100%;
+  background-color: rgba(253, 251, 247, 0.85); /* Semi-transparent cream */
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(226, 217, 200, 0.6);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Container handles full width distribution and padding */
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 1rem 5%;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+}
+
+.brand-logo-img {
+  height: 58px; 
+  width: auto;
+  object-fit: contain;
+}
+
+.brand-title-text {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #2C3531;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.nav-center-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-center-links a {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: #2C3531;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.nav-center-links a:hover {
+  color: #2D7D56;
+}
+
+.nav-right-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.btn-signin {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #2C3531;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.btn-signin:hover {
+  color: #2D7D56;
+}
+
+.btn-signup-pill {
+  background-color: #2D7D56;
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.65rem 1.4rem;
+  border-radius: 25px;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.btn-signup-pill:hover {
+  background-color: #236343;
+}
+
+/* Glowing badge for "Log" */
+.logo-accent {
+  background-color: #2D7D56;
+  color: #ffffff;
+  font-weight: 700;
+  display: inline-block;
+  padding: 0.15rem 0.55rem;
+  margin-left: 0.25rem;
+  border-radius: 6px;
+  line-height: 1.1;
+  box-shadow: 
+    0 0 10px rgba(45, 125, 86, 0.5),
+    0 0 20px rgba(45, 125, 86, 0.35);
+  animation: greenBadgeGlow 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes greenBadgeGlow {
+  0% {
+    box-shadow: 
+      0 0 6px rgba(45, 125, 86, 0.45),
+      0 0 14px rgba(45, 125, 86, 0.25);
+  }
+  100% {
+    box-shadow: 
+      0 0 12px rgba(45, 125, 86, 0.75),
+      0 0 26px rgba(78, 179, 126, 0.6),
+      0 0 38px rgba(78, 179, 126, 0.35);
+  }
+}

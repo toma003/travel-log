@@ -1,0 +1,598 @@
+/* --- GLOBAL RESETS & VARS --- */
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --primary: #2D7D56;
+  --primary-hover: #236343;
+  --bg-cream: #fcf7ec;
+  --card-bg: #F5EFDF;
+  --text-dark: #2C3531;
+  --text-muted: #5C6B64;
+  --border-subtle: #E2D9C8;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Inter', -apple-system, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-cream);
+  color: var(--text-dark);
+  font-family: var(--font-sans);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* --- 0. TRANSPARENT FULL-BLEED NAVBAR --- */
+header,
+.navbar,
+nav {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-container,
+nav > div {
+  width: 100%;
+  max-width: 1350px;
+  margin: 0 auto;
+  padding: 0 4%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: transparent !important;
+}
+
+/* --- 1. HERO SECTION (Full-Bleed Asymmetric Split with Torn Edge) --- */
+.hero-section {
+  position: relative;
+  width: 100%;
+  min-height: 680px;
+  background-color: #fcf7ec;
+  overflow: hidden;
+  margin-top: -80px;
+  padding-top: 80px;
+  padding-bottom: 0;
+  display: flex;
+  align-items: center;
+}
+
+.hero-container {
+  width: 100%;
+  max-width: 1350px;
+  margin: 0 auto;
+  padding: 0 4%;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  min-height: 600px;
+}
+
+/* Left Content Area */
+.hero-left {
+  width: 50%;
+  max-width: 560px;
+  padding: 2.5rem 0 3.5rem 0;
+  z-index: 10;
+}
+
+.hero-heading {
+  font-family: var(--font-serif);
+  font-size: 4.2rem;
+  line-height: 1.08;
+  color: #26593F;
+  margin: 0 0 1.6rem 0;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+/* Heading Accent & Double Artistic Underline */
+.heading-accent {
+  position: relative;
+  display: inline-block;
+}
+
+.heading-accent::after {
+  display: none !important;
+}
+
+.artistic-double-underline {
+  position: absolute;
+  left: -2px;
+  bottom: -16px;
+  width: 100%;
+  max-width: 280px;
+  height: 22px;
+  pointer-events: none;
+}
+
+.artistic-double-underline svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.hero-text {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin-bottom: 2.5rem;
+  max-width: 440px;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.btn-primary-pill {
+  background-color: var(--primary);
+  color: #ffffff;
+  padding: 0.95rem 2.2rem;
+  border-radius: 40px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(45, 125, 86, 0.25);
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+}
+
+.btn-primary-pill:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(45, 125, 86, 0.35);
+}
+
+.btn-text-link {
+  color: var(--text-dark);
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+}
+
+.btn-text-link:hover {
+  color: var(--primary);
+}
+
+/* Airplane & Dashed Flight Loop Trail */
+.hero-airplane-trail {
+  position: absolute;
+  left: 46%;
+  top: 15px;
+  width: 250px;
+  height: 150px;
+  z-index: 15;
+  pointer-events: none;
+}
+
+.hero-airplane-trail svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* --- Hero Right: Covers complete right side edge-to-edge --- */
+.hero-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 70%;
+  height: 100%;
+  z-index: 2;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Fibrous torn white paper rim along the tear edge with soft shadow */
+/* Cream torn paper strip (sits behind the photo, sticks out to the left) */
+/* Thin cream torn paper rim (follows the photo edge, only a sliver shows) */
+.torn-paper-backing {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1064 700' preserveAspectRatio='none'%3E%3Cfilter id='b' x='-10%25' y='-10%25' width='120%25' height='120%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.015 0.07' numOctaves='4' seed='7' result='n'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='n' scale='46' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cpath filter='url(%23b)' d='M280,-20 L1100,-20 L1100,720 L225,720 Z' fill='%23F5EEDD'/%3E%3C/svg%3E") no-repeat center / 100% 100%;
+  filter: drop-shadow(-4px 1px 8px rgba(0, 0, 0, 0.15));
+}
+
+/* Photo with its own rough ripped edge */
+.hero-img-mask {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1064 700' preserveAspectRatio='none'%3E%3Cfilter id='r' x='-10%25' y='-10%25' width='120%25' height='120%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.015 0.07' numOctaves='4' seed='7' result='n'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='n' scale='38' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cpath filter='url(%23r)' d='M175,-20 L1100,-20 L1100,720 L130,720 Z' fill='black'/%3E%3C/svg%3E") no-repeat center / 100% 100%;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1064 700' preserveAspectRatio='none'%3E%3Cfilter id='r' x='-10%25' y='-10%25' width='120%25' height='120%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.015 0.07' numOctaves='4' seed='7' result='n'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='n' scale='38' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Cpath filter='url(%23r)' d='M175,-20 L1100,-20 L1100,720 L130,720 Z' fill='black'/%3E%3C/svg%3E") no-repeat center / 100% 100%;
+}
+
+.hero-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  display: block;
+}
+
+/* --- 2. RIBBON BAR (Pill Container) --- */
+.ribbon-bar {
+  background-color: transparent;
+  padding: 0;                 /* Zero out all outer padding */
+  margin-top: 0;              /* Sits directly beneath the hero image */
+  position: relative;
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+}
+
+.ribbon-container {
+  width: calc(100% - 8%);
+  max-width: 1290px;
+  background-color: #E7EBDC;
+  border-radius: 18px;
+  padding: 1.1rem 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+.ribbon-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.98rem;
+  color: #2C3531;
+}
+
+.ribbon-svg-icon {
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+}
+
+.ribbon-divider {
+  width: 1px;
+  height: 32px;
+  background-color: #C3CBAF;
+}
+
+/* --- 3. SECTION HEADERS --- */
+.section-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.section-title-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.title-line {
+  display: block;
+  width: 90px;
+  height: 2px;
+  background-color: #C2D3C7; /* Soft sage green horizontal lines */
+  border-radius: 2px;
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  color: #26593F; /* Dark forest green header text matching 2nd image */
+  margin: 0;
+  font-weight: 700;
+}
+
+.section-subtitle {
+  color: #5C6B64;
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+/* --- 4. HOW IT WORKS --- */
+.how-it-works {
+  max-width: 1220px;
+  margin: 5rem auto;
+  padding: 0 4%;
+}
+
+.steps-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.step-card {
+  flex: 1;
+  background-color: #F6F1E7; /* Light warm cream card background */
+  border: 1px solid #EBE3D3;
+  border-radius: 16px;
+  padding: 2.2rem 1.6rem;
+  display: flex;
+  align-items: center; /* Horizontally align icon badge with title */
+  gap: 1.25rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+.step-icon-wrapper {
+  background-color: #DDE8DF; /* Circular soft sage green background badge */
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.step-icon-wrapper svg {
+  width: 28px;
+  height: 28px;
+}
+
+.step-content h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #2C3531;
+  margin: 0 0 0.4rem 0;
+}
+
+.step-content p {
+  font-size: 0.9rem;
+  color: #5C6B64;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.step-arrow {
+  font-size: 1.4rem;
+  color: #26593F;
+  font-weight: bold;
+}
+
+/* --- 5. FEATURES 2x2 GRID --- */
+.features-section {
+  max-width: 1100px;
+  margin: 5rem auto;
+  padding: 0 4%;
+}
+
+.features-2x2-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem 3rem;
+}
+
+.feature-row {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+}
+
+.feature-img-box {
+  width: 180px;
+  height: 120px;
+  border-radius: 14px;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.feature-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.feature-info {
+  flex: 1;
+}
+
+.feature-info h3 {
+  font-family: var(--font-sans);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1A231E;
+  margin: 0 0 0.4rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  line-height: 1.3;
+}
+
+/* FIX: Constrain icon dimensions so SVG stays small and inline */
+.feature-info h3 svg,
+.feature-title-icon {
+  width: 24px !important;
+  height: 24px !important;
+  min-width: 24px;
+  min-height: 24px;
+  flex-shrink: 0;
+  display: inline-block;
+}
+
+.feature-info p {
+  font-size: 0.9rem;
+  color: #5C6B64;
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* --- 6. CTA & FOOTER COMBINED (BACKGROUND FROM img15.jpg) --- */
+/* --- 6. CTA & FOOTER COMBINED --- */
+
+.cta-footer-wrapper {
+  position: relative;
+  width: 100%;
+  /* Fallback dark green color + image path fallback */
+  background-color: #1B382B;
+  background-image: url('../images/img15.jpg'); 
+  background-position: center top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #ffffff;
+}
+
+/* Top Half: CTA Section */
+.cta-section {
+  padding: 6rem 5% 4rem 5%;
+  text-align: center;
+}
+
+.cta-container {
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+.cta-container h2 {
+  font-family: var(--font-serif);
+  font-size: 2.7rem;
+  font-weight: 600;
+  margin: 0 0 0.8rem 0;
+  color: #ffffff;
+}
+
+.cta-container p {
+  color: #E2EADF;
+  font-size: 1.05rem;
+  margin: 0 0 2rem 0;
+}
+
+.btn-cta-white {
+  background-color: #ffffff;
+  color: #173024;
+  padding: 0.85rem 2.2rem;
+  border-radius: 35px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-cta-white:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+/* Bottom Half: Footer Bar */
+.footer-dark {
+  background: transparent;
+  padding: 1.5rem 4% 1.2rem 4%;
+}
+
+.footer-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 1.2rem;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+}
+
+.footer-logo-link {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+}
+
+.footer-custom-logo {
+  height: 58px;
+  width: auto;
+  object-fit: contain;
+  /* Converts dark logo to solid white */
+  filter: brightness(0) invert(1);
+}
+
+.footer-logo-text {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.footer-divider {
+  width: 1px;
+  height: 24px;
+  background-color: rgba(255, 255, 255, 0.25);
+  margin: 0 0.5rem;
+}
+
+.footer-nav,
+.footer-auth-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.8rem;
+}
+
+.footer-nav a,
+.footer-auth-nav a {
+  color: #E2EADF;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 400;
+  transition: color 0.2s ease;
+}
+
+.footer-nav a:hover,
+.footer-auth-nav a:hover {
+  color: #ffffff;
+}
+
+.footer-mountain-space {
+  width: 120px;
+  height: 30px;
+}
+
+.footer-copyright {
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 1rem;
+}
+
+.footer-copyright p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+}
