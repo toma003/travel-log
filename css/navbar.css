@@ -1,6 +1,6 @@
 .navbar {
   width: 100%;
-  background-color: rgba(253, 251, 247, 0.85); /* Semi-transparent cream */
+  background-color: rgba(253, 251, 247, 0.95);
   backdrop-filter: blur(6px);
   border-bottom: 1px solid rgba(226, 217, 200, 0.6);
   position: sticky;
@@ -8,7 +8,6 @@
   z-index: 1000;
 }
 
-/* Container handles full width distribution and padding */
 .navbar-container {
   display: flex;
   justify-content: space-between;
@@ -16,6 +15,7 @@
   max-width: 1300px;
   margin: 0 auto;
   padding: 1rem 5%;
+  position: relative;
 }
 
 .nav-brand {
@@ -40,10 +40,19 @@
   line-height: 1;
 }
 
+/* Desktop layout container for links */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1;
+  margin-left: 4rem;
+}
+
 .nav-center-links {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 3rem;
 }
 
 .nav-center-links a {
@@ -84,7 +93,7 @@
   font-family: 'Inter', sans-serif;
   font-weight: 600;
   font-size: 0.95rem;
-  padding: 0.65rem 1.4rem;
+  padding: 0.55rem 1.1rem;
   border-radius: 25px;
   text-decoration: none;
   transition: background-color 0.2s ease;
@@ -103,7 +112,7 @@
   padding: 0.15rem 0.55rem;
   margin-left: 0.25rem;
   border-radius: 6px;
-  line-height: 1.1;
+  line-height: 1.2;
   box-shadow: 
     0 0 10px rgba(45, 125, 86, 0.5),
     0 0 20px rgba(45, 125, 86, 0.35);
@@ -121,5 +130,113 @@
       0 0 12px rgba(45, 125, 86, 0.75),
       0 0 26px rgba(78, 179, 126, 0.6),
       0 0 38px rgba(78, 179, 126, 0.35);
+  }
+}
+
+/* Hide Hamburger Button on Desktop */
+.nav-toggle {
+  display: none;
+}
+
+/* --- MOBILE & TABLET RESPONSIVE MENU WITH SLIDE ANIMATION --- */
+@media (max-width: 992px) {
+  .navbar-container {
+    padding: 0.6rem 5%;
+  }
+
+  .brand-logo-img {
+    height: 44px;
+  }
+
+  .brand-title-text {
+    font-size: 1.45rem;
+  }
+
+  /* Hamburger Toggle Button */
+  .nav-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 42px;
+    height: 42px;
+    padding: 9px;
+    background: transparent;
+    border: 1px solid rgba(44, 53, 49, 0.2);
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  .nav-toggle span {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background-color: #2C3531;
+    border-radius: 2px;
+    transition: transform 0.25s ease, opacity 0.2s ease;
+  }
+
+  .nav-toggle.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .nav-toggle.open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav-toggle.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* Animated Dropdown Menu Panel */
+  .nav-menu {
+    display: flex;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-left: 0;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.4rem;
+    padding: 0 5%;
+    background-color: rgba(253, 251, 247, 0.98);
+    border-bottom: 1px solid rgba(226, 217, 200, 0.8);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+
+    /* Animation states */
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    pointer-events: none;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.3s ease,
+                padding 0.3s ease;
+  }
+
+  /* Expanded State */
+  .nav-menu.open {
+    max-height: 380px; /* Big enough to fit all menu items */
+    opacity: 1;
+    padding: 1.6rem 5% 2rem;
+    pointer-events: auto;
+  }
+
+  .nav-center-links {
+    flex-direction: column;
+    gap: 1.2rem;
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-right-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.8rem;
+  }
+
+  .btn-signup-pill {
+    width: 100%;
+    text-align: center;
   }
 }

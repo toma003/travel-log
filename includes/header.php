@@ -32,21 +32,45 @@ if (session_status() === PHP_SESSION_NONE) {
                 <!-- Brand -->
                 <a href="index.php" class="nav-brand">
                     <img src="images/logo.png" alt="Travel Log Logo" class="brand-logo-img">
-                    <span class="brand-title-text">Travel <span class="logo-accent">Log</span></span>
+                    <span class="brand-title-text">Travel<span class="logo-accent">Log</span></span>
                 </a>
 
-                <!-- Nav Links -->
-                <div class="nav-center-links">
-                    <a href="#features">Features</a>
-                    <a href="#how-it-works">How It Works</a>
-                    <a href="#about">About</a>
-                </div>
+                <!-- Hamburger Button (Mobile & Tablet) -->
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
 
-                <!-- Action Links -->
-                <div class="nav-right-actions">
-                    <a href="login.php" class="btn-signin">Log In</a>
-                    <a href="register.php" class="btn-signup-pill">Sign Up</a>
+                <!-- Responsive Collapsible Menu -->
+                <div class="nav-menu" id="navMenu">
+                    <!-- Nav Links -->
+                    <div class="nav-center-links">
+                        <a href="#features">Features</a>
+                        <a href="#how-it-works">How It Works</a>
+                        <a href="#about">About</a>
+                    </div>
+
+                    <!-- Action Links -->
+                    <div class="nav-right-actions">
+                        <a href="login.php" class="btn-signin">Log In</a>
+                        <a href="register.php" class="btn-signup-pill">Sign Up</a>
+                    </div>
                 </div>
             </div>
         </nav>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const navToggle = document.getElementById('navToggle');
+                const navMenu = document.getElementById('navMenu');
+
+                if (navToggle && navMenu) {
+                    navToggle.addEventListener('click', function () {
+                        navToggle.classList.toggle('open');
+                        navMenu.classList.toggle('open');
+                    });
+                }
+            });
+        </script>
     <?php endif; ?>

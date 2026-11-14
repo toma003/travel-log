@@ -34,3 +34,23 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
+/* Ensure padding doesn't affect overall element width */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* Ensure images never overflow their container */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Fluid responsive wrapper for all main layouts */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
